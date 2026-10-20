@@ -5,12 +5,13 @@
 #include <stdlib.h>
 /*
 # VaziaLista (lista* L) recebe uma lista e devolve  1 caso esteja vazia
-# CriaLista() cria uma lista e devolve o endereço
-# InsereLista (lista *L,int pos,int n) insere um valor n na posiçao pos na lista L
-# XapiskaItem (lista *L,int pos) deleta o item na posiçao pos da lista L
-# XapiskaLista (lista *L) deleta a lista L
-# ImprimeLista(lista *L) adivinha
-# DuplicaLista(lista *L) duplica a lista L e devolve outra identica
+# CriaLista() cria uma lista e devolve o endereço (inicio e case 5)
+# InsereLista (lista *L,int pos,int n) insere um valor n na posiçao pos na lista L (case 1)
+# XapiskaItem (lista *L,int pos) (case 2)deleta o item na posiçao pos da lista L //precisa ou ser por código de solicitação ou a gente cria uma função que procure a posição a partir do código de solicitação
+# XapiskaLista (lista *L) deleta a lista L // (case 7)no sair vai precisar; acabei de me tocar que tamo deixando lista aleatória na memória do computador sem poder acessar depois
+# ImprimeLista(lista *L) adivinha //(case 6)
+# DuplicaLista(lista *L) duplica a lista L e devolve outra identica //não precisa
+# BuscaItem(lista *L, int csol) procura um item e devolve o endereço dele // (case 3 e 4)
 */
 typedef struct no
 {
