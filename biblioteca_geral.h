@@ -5,21 +5,22 @@
 #include <stdlib.h>
 /*
 # VaziaLista (lista* L) recebe uma lista e devolve  1 caso esteja vazia
-# CriaLista() cria uma lista e devolve o endereço
-# InsereLista (lista *L,int pos,int n) insere um valor n na posiçao pos na lista L
-# XapiskaItem (lista *L,int pos) deleta o item na posiçao pos da lista L
+# CriaLista() cria uma lista e devolve o endereÃ§o
+# InsereLista (lista *L,int pos,int n) insere um valor n na posiÃ§ao pos na lista L
+# XapiskaItem (lista *L,int pos) deleta o item na posiÃ§ao pos da lista L
 # XapiskaLista (lista *L) deleta a lista L
 # ImprimeLista(lista *L) adivinha
 # DuplicaLista(lista *L) duplica a lista L e devolve outra identica
 */
 typedef struct no
 {
-    int csol; //código da solicitação
-    char c_eq[6]; //código do equipamento
+    int csol; //cÃ³digo da solicitaÃ§Ã£o
+    char c_eq[6]; //cÃ³digo do equipamento
     char nome[20]; //nome do equipamento
     int prior; //prioridade do equipamento
-    int peri; //período até ficar pronto
-}No
+    int peri; //perÃ­odo atÃ© ficar pronto
+    struct no *prox;
+}No;
 
 typedef struct lista{
     No *inicio;
@@ -37,13 +38,7 @@ lista* CriaLista(){
     return L;
 }
 
-void InsereLista (lista *L,int pos,int n){
-    int cond=VaziaLista(L);
-    if (cond==1){
-        return;
-    }
-    No* novo = (No*) malloc(sizeof(No));
-    novo->info = n;
+void InsereLista (lista *L,int pos,No *novo){
     No* aux=L->inicio;
 
     if(pos<=1){
@@ -57,7 +52,7 @@ void InsereLista (lista *L,int pos,int n){
     novo->prox=aux->prox;
     aux->prox=novo;
     }
-
+    return;
 }
 
 void XapiskaItem (lista *L,int pos){
@@ -109,15 +104,26 @@ void ImprimeLista(lista *L){
     No *aux=L->inicio;
     int index=1;
     while(aux->prox!=NULL){
-        printf("item numero %d:%d",index,aux->info);
+            printf("\n\n");
+        printf("\ncÃ³digo de solicitaÃ§ao numero %d:%d",index,aux->csol);
+        printf("\ncÃ³digo de equipamento numero %d:%s",index,aux->c_eq);
+        printf("\nnome do equipamento %d:%s",index,aux->nome);
+        printf("\nprioridade do equipamento %d:%d",index,aux->prior);
+        printf("\nprazo atÃ© ficar pronto %d:%d",index,aux->peri);
         aux=aux->prox;
         index++;
     }
-    printf("item numero %d:%d",index,aux->info);
+            printf("\n\n");
+        printf("\ncÃ³digo de solicitaÃ§ao numero %d:%d",index,aux->csol);
+        printf("\ncÃ³digo de equipamento numero %d:%s",index,aux->c_eq);
+        printf("\nnome do equipamento %d:%s",index,aux->nome);
+        printf("\nprioridade do equipamento %d:%d",index,aux->prior);
+        printf("\nprazo atÃ© ficar pronto %d:%d",index,aux->peri);
+        aux=aux->prox;
     return;
 }
 
-lista* DuplicaLista(lista *L){
+/*lista* DuplicaLista(lista *L){
     int cond=VaziaLista(L);
     if (cond==1){
         return NULL;
@@ -160,17 +166,17 @@ lista* RachaLista (lista *L, int index){
     D->inicio=aux->prox;
     aux->prox=NULL;
     return D;
-}
+}*/
 
-void InsereOrdenado(int n, lista *L){
+void InsereOrdenado(lista *L, No *novo){
     No *aux=L->inicio;
     int cnt=1;
 
-    while((aux!=NULL) && (n>aux->info)){
+    while((aux!=NULL) && (novo->csol>aux->csol)){
         aux=aux->prox;
         cnt++;
     }
-    InsereLista(L,cnt,n);
+    InsereLista(L,cnt,novo);
     return;
 }
 

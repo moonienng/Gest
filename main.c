@@ -2,64 +2,63 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <locale.h>
+#include <string.h>
 #include "biblioteca_geral.h"
 
-typedef struct reg
+void NovaSolic(lista *L,int cods, char *codeq, char *nome,int pri,int per)
 {
-    int csol; //cÛdigo da solicitaÁ„o
-    char c_eq[6]; //cÛdigo do equipamento
-    char nome[20]; //nome do equipamento
-    int prior; //prioridade do equipamento
-    int peri; //perÌodo atÈ ficar pronto
-    struct reg *prox;
-}reg
-
-void NovaSolic(int cods, char codeq[], char nome[],int pri,int per)
-{
-    reg novo = (reg *) malloc(sizeof(reg));
-    reg->csol = cods;
+    No *novo;
+    //cria um elemento novo
+    novo = (No *) malloc(sizeof(No));
+    //guarda o c√≥digo da solicita√ß√£o
+    novo->csol=cods;
+    //guarda o c√≥digo do equipamento
     for(int i = 0; i<6; i++)
     {
-       reg->c_eq[i] = codeq[i];
+       novo->c_eq[i] = codeq[i];
     }
-    for(int i = 0; i<6; i++)
-    {
-       reg->nome[i] = nome[i];
-    }
-    //
+    //guarda o nome do equipamento
+    strcpy(novo->nome,nome);
+    //guarda o per√≠odo e a prioridade
+    novo->peri = per;
+    novo->prior = pri;
+    novo->prox = NULL;
+    InsereOrdenado(L,novo);
 }
-//funÁ„o que cria uma nova solicitaÁ„o:
-// 1- cria o registro e preenche, codigo de solicitaÁ„o, codigo do equipamento e nome
-// 2- È chamado pela de cima, altera o perÌodo e prioridade
-// 3- insere na lista na posiÁ„o correta
+//fun√ß√£o que cria uma nova solicita√ß√£o:
+// 1- cria o registro e preenche, codigo de solicita√ß√£o, codigo do equipamento e nome
+// 2- √© chamado pela de cima, altera o per√≠odo e prioridade
+// 3- insere na lista na posi√ß√£o correta
     int main()
     {
         setlocale(LC_ALL, "Portuguese");
         int op;
         char conf;
+        lista *L = NULL;
+        L = CriaLista();
 
         /*
         \nMenu:
-        \n1 - Criar nova solicitaÁ„o
-        \n2 - Apagar SolicitaÁ„o
-        \n3 - Consultar solicitaÁ„o
-        \n4 - Editar solicitaÁ„o
-        \n5 - Exibir fila de manutenÁ„o
-        \n6 - Exibir solicitaÁıes
+        \n1 - Criar nova solicita√ß√£o
+        \n2 - Apagar Solicita√ß√£o
+        \n3 - Consultar solicita√ß√£o
+        \n4 - Editar solicita√ß√£o
+        \n5 - Exibir fila de manuten√ß√£o
+        \n6 - Exibir solicita√ß√µes
         \n7 - Sair
 
-        - Cada cÛdigo È referente a uma funÁ„o do sistema
-        - Para as funÁıes funcionarem È necess·rio uma biblioteca com funÁıes b·sicas de lista
+        - Cada c√≥digo √© referente a uma fun√ß√£o do sistema
+        - Para as fun√ß√µes funcionarem √© necess√°rio uma biblioteca com fun√ß√µes b√°sicas de lista
         */
          do
             {
          op=0;
-         printf("\nSistema de manutenÁ„o");
-         printf("\nMenu: \n1 - Criar nova solicitaÁ„o\n2 - Apagar SolicitaÁ„o\n3 - Consultar solicitaÁ„o\n4 - Editar solicitaÁ„o\n5 - Exibir fila de manutenÁ„o\n6 - Exibir solicitaÁıes\n7 - Sair");
-            printf("\nDigite o cÛdigo:");
+         printf("\nSistema de manuten√ß√£o");
+         printf("\nMenu: \n1 - Criar nova solicita√ß√£o\n2 - Apagar Solicita√ß√£o\n3 - Consultar solicita√ß√£o\n4 - Editar solicita√ß√£o\n5 - Exibir fila de manuten√ß√£o\n6 - Exibir solicita√ß√µes\n7 - Sair");
+            printf("\nDigite o c√≥digo:");
             while (scanf("%i",&op) == 0)
                 {
-                printf("CÛdigo inv·lido. Tente novamente!");
+                printf("C√≥digo inv√°lido. Tente novamente!");
                 while (getchar() != '\n');
             }
 
@@ -68,32 +67,58 @@ void NovaSolic(int cods, char codeq[], char nome[],int pri,int per)
          switch(op)
          {
              case 1:
-                 printf("Criar nova solicitaÁ„o");
-                 //pedir codigo de solicitaÁ„o
-                 //pedir pedir cÛdigo do equipamento
+                 //vari√°veis que eu preciso coletar pra criar
+                 int cods; //c√≥digo da solicita√ß√£o
+                 char codeq[6] = "AAA111"; //c√≥digo do equipamento
+                 char nome[20]; //nome do equipamento
+                 int pri; //prioridade do equipamento
+                 int per; //per√≠odo at√© ficar pronto
+
+                 printf("\t\t==================== Criar nova solicita√ß√£o ====================");
+                 //pedir codigo de solicita√ß√£o
+                 printf("\nDigite o c√≥digo de solicita√ß√£o:");
+                 scanf("%d",&cods);
+                 getchar();
+
+                 //pedir pedir c√≥digo do equipamento
+                 printf("\nDigite o c√≥digo do equipamento:");
+
                  //pedir nome do equipamento
-                 //pedir prioridade da solicitaÁ„o
-                 //pedir perÌodo atÈ estar pronto
-                 //NovaSolic(cods,codeq[],nome[],pri,per);
+                 printf("\nDigite o nome do equipamento:");
+                 fgets(nome, sizeof(nome), stdin);
+
+                 //pedir prioridade da solicita√ß√£o
+                 printf("\nRela√ß√£o de prioridades:");
+                 printf("\n1  -> Alta: manuten√ß√£o urgente\n2  -> M√©dia: deve ser feita em breve\n3 -> Baixa: pode aguardar");
+                 printf("\nDigite a prioridade do equipamento:");
+                 scanf("%d",&pri);
+
+                 //pedir per√≠odo at√© estar pronto
+                 printf("\nRela√ß√£o de per√≠odos:");
+                 printf("\nPrioridade 1  -> entre 1 e 7 dias\nPrioridade 2  -> entre 1 e 15 dias\nPrioridade 3 -> entre 1 e 20 dias");
+                 printf("\nDigite o per√≠odo de manuten√ß√£o:");
+                 scanf("%d",&per);
+
+                 NovaSolic(L,cods,codeq,nome,pri,per);
              break;
              case 2:
-                 printf("Apagar solicitaÁ„o");
+                 printf("Apagar solicita√ß√£o");
                  //ApagarSolic();
              break;
              case 3:
-                 printf("Consultar solicitaÁ„o");
+                 printf("Consultar solicita√ß√£o");
                  //ConsultarSolic);
              break;
              case 4:
-                 printf("Editar solicitaÁ„o");
+                 printf("Editar solicita√ß√£o");
                  //EditarSolic();
              break;
              case 5:
-                 printf("Exibir lista solicitaÁ„o");
-                 //ExibirFSoli();
+                 printf("Exibir lista solicita√ß√£o");
+                 ImprimeLista(L);
              break;
              case 6:
-                 printf("Exibir todas solicitaÁ„o");
+                 printf("Exibir todas solicita√ß√£o");
                  //ExibirSolic();
              break;
              case 7:
@@ -101,7 +126,7 @@ void NovaSolic(int cods, char codeq[], char nome[],int pri,int per)
                     scanf(" %c",&conf);
                     if(tolower(conf) == 's')
                     {
-                        printf("AtÈ mais!");
+                        printf("At√© mais!");
 
                     }
                     else
@@ -110,7 +135,7 @@ void NovaSolic(int cods, char codeq[], char nome[],int pri,int per)
                     }
              break;
              default:
-                printf("CÛdigo inv·lido. Tente novamente!");
+                printf("C√≥digo inv√°lido. Tente novamente!");
          }
         }while(op!=7);
 
