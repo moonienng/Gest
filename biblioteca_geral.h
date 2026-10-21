@@ -41,21 +41,24 @@ lista* CriaLista(){
     return L;
 }
 
-void InsereLista (lista *L,int pos,No *novo){
-    No* aux=L->inicio;
-
-    if(pos<=1){
-        novo->prox=aux;
-        L->inicio=novo;
-    }else{
-        while ((aux->prox!=NULL) && (pos>2)){
-                aux=aux->prox;
-                pos--;
+void InsereLista (lista *L, No *novo){
+    No* aux = L->inicio;
+    No* ant = NULL;
+    while ((aux != NULL) && (novo->csol > aux->csol))
+    {
+        ant = aux;
+        aux = aux->prox;
     }
-    novo->prox=aux->prox;
-    aux->prox=novo;
+    if (ant == NULL)
+    {
+        novo->prox = L->inicio;
+        L->inicio = novo;
     }
-    return;
+    else
+    {
+        ant->prox = novo;
+        novo->prox = aux;
+    }
 }
 
 void XapiskaItem (lista *L,int pos){
@@ -175,7 +178,7 @@ int Achapos (lista *L, int csol){
     int cond=VaziaLista(L);
     if (cond==1){
         free(L);
-        return NULL;
+        return 0;
     }
     No *aux=L->inicio;
     int cnt=1;
@@ -195,6 +198,6 @@ No* BuscaItem(lista *L, int csol){
         aux=aux->prox;
         pos--;
     }
-    return aux->prox;
+    return aux;
 }
 #endif // BLISTECA_H_INCLUDED
