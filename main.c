@@ -55,12 +55,20 @@ void NovaSolic(lista *L,int cods, char *codeq, char *nome,int pri,int per)
     4 - mostra a lista
     5 - apaga a lista
 */
-//TODO: VerificaTipo (int)
+//TODO: VerificaTipo (int) 
 /*
     1 - recebe o retorno de um scanf 
     2 - verifica se o retorno está certo
     3 - retorna 0 para quando tá certo e 1 para quando está errado
 */
+int VerificaTipo (int tipo)
+{
+    if(tipo>0)
+    {
+        return 0;
+    }
+    return 1;
+}
 //TODO: VerificarEEntrada (int)
 /*
     1 - recebe o código do equipamento
@@ -78,7 +86,7 @@ void NovaSolic(lista *L,int cods, char *codeq, char *nome,int pri,int per)
     int main() 
     {
         setlocale(LC_ALL, "Portuguese");
-        int op;
+        int op=0;
         char conf;
         lista *L = NULL;
         L = CriaLista();
@@ -96,17 +104,17 @@ void NovaSolic(lista *L,int cods, char *codeq, char *nome,int pri,int per)
         - Cada código é referente a uma função do sistema
         - Para as funções funcionarem é necessário uma biblioteca com funções básicas de lista
         */
-         do
-            {
-         op=0;
-         printf("\nSistema de manutenção");
-         printf("\nMenu: \n1 - Criar nova solicitação\n2 - Apagar Solicitação\n3 - Consultar solicitação\n4 - Editar solicitação\n5 - Exibir fila de manutenção\n6 - Exibir solicitações\n7 - Sair");
-            printf("\nDigite o código:");
-            while (scanf("%i",&op) == 0)
-                {
-                printf("Código inválido. Tente novamente!");
-                while (getchar() != '\n');
-            }
+       do{
+        printf("\nSistema de manutenção");
+        printf("\nMenu: \n1 - Criar nova solicitação\n2 - Apagar Solicitação\n3 - Consultar solicitação\n4 - Editar solicitação\n5 - Exibir fila de manutenção\n6 - Exibir solicitações\n7 - Sair");
+        printf("\nDigite o código:");
+        int res = VerificaTipo(scanf("%i", &op));
+        while (res != 0)
+        {
+            printf("Código inválido. Tente novamente!");
+            while (getchar() != '\n');
+            res = VerificaTipo(scanf("%i", &op));
+        }
 
 
          system("cls");
@@ -123,8 +131,13 @@ void NovaSolic(lista *L,int cods, char *codeq, char *nome,int pri,int per)
                  printf("\t\t==================== Criar nova solicitação ====================");
                  //pedir codigo de solicitação
                  printf("\nDigite o código de solicitação:");
-                 scanf("%d",&cods);
-                 getchar();
+                 int res = VerificaTipo(scanf("%d",&cods));
+                 while (res != 0)
+                {
+                    printf("Entrada inválida. Tente novamente!");
+                    while (getchar() != '\n');
+                    res = VerificaTipo(scanf("%d",&cods));
+                }
 
                  //pedir pedir código do equipamento
                  printf("\nDigite o código do equipamento:");
@@ -138,14 +151,25 @@ void NovaSolic(lista *L,int cods, char *codeq, char *nome,int pri,int per)
                  printf("\nRelação de prioridades:");
                  printf("\n1  -> Alta: manutenção urgente\n2  -> Média: deve ser feita em breve\n3 -> Baixa: pode aguardar");
                  printf("\nDigite a prioridade do equipamento:");
-                 scanf("%d",&pri);
+                 int res = VerificaTipo(scanf("%d",&pri));
+                 while (res != 0)
+                {
+                    printf("Entrada inválida. Tente novamente!");
+                    while (getchar() != '\n');
+                    res = VerificaTipo(scanf("%d",&pri));
+                }
 
                  //pedir período até estar pronto
                  printf("\nRelação de períodos:");
                  printf("\nPrioridade 1  -> entre 1 e 7 dias\nPrioridade 2  -> entre 1 e 15 dias\nPrioridade 3 -> entre 1 e 20 dias");
                  printf("\nDigite o período de manutenção:");
-                 scanf("%d",&per);
-
+                 int res = VerificaTipo(scanf("%d",&per));
+                 while (res != 0)
+                {
+                    printf("Entrada inválida. Tente novamente!");
+                    while (getchar() != '\n');
+                    res = VerificaTipo(scanf("%d",&per));
+                }
                  NovaSolic(L,cods,codeq,nome,pri,per);
              break;
              case 2:
