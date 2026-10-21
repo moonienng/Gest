@@ -11,9 +11,8 @@
 # XapiskaLista (lista *L) deleta a lista L // (case 7)no sair vai precisar; acabei de me tocar que tamo deixando lista aleatória na memória do computador sem poder acessar depois
 # ImprimeLista(lista *L) adivinha //(case 6)
 # DuplicaLista(lista *L) duplica a lista L e devolve outra identica //não precisa
-# TODO:  BuscaItem(lista *L, int csol) procura um item e devolve o endereço dele // (case 3 e 4)
-# BuscaItem(lista *L, int csol) procura um item e devolve o endereço dele // (case 3 e 4)
-# Achapos
+# TODO: BuscaItem(lista *L, int csol) procura um item e devolve o endereço dele // (case 3 e 4)
+# TODO: Achapos (lista *L, int csol) procura um item pelo código de solicitação e devolve a posição dele
 */
 typedef struct no
 {
