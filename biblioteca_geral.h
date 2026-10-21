@@ -11,8 +11,9 @@
 # XapiskaLista (lista *L) deleta a lista L // (case 7)no sair vai precisar; acabei de me tocar que tamo deixando lista aleatória na memória do computador sem poder acessar depois
 # ImprimeLista(lista *L) adivinha //(case 6)
 # DuplicaLista(lista *L) duplica a lista L e devolve outra identica //não precisa
-# TODO: BuscaItem(lista *L, int csol) procura um item e devolve o endereço dele // (case 3 e 4)
+
 # TODO: Achapos (lista *L, int csol) procura um item pelo código de solicitação e devolve a posição dele
+# TODO: BuscaItem(lista *L, int csol) procura um item e devolve o endereço dele // (case 3 e 4)
 */
 typedef struct no
 {
@@ -170,16 +171,30 @@ lista* RachaLista (lista *L, int index){
     return D;
 }*/
 
-void InsereOrdenado(lista *L, No *novo){
+int Achapos (lista *L, int csol){
+    int cond=VaziaLista(L);
+    if (cond==1){
+        free(L);
+        return NULL;
+    }
     No *aux=L->inicio;
     int cnt=1;
 
-    while((aux!=NULL) && (novo->csol>aux->csol)){
+    while((aux!=NULL) && (csol!=aux->csol)){
         aux=aux->prox;
         cnt++;
     }
-    InsereLista(L,cnt,novo);
-    return;
+    return cnt;
 }
 
+No* BuscaItem(lista *L, int csol){
+    int pos=Achapos(L,csol);
+    No *aux=L->inicio;
+
+    while(pos>1){
+        aux=aux->prox;
+        pos--;
+    }
+    return aux->prox;
+}
 #endif // BLISTECA_H_INCLUDED
