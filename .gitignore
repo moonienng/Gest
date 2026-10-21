@@ -1,8 +1,8 @@
-  *.o
-  *.exe
-  *.layout
-  *.depend
-  *.json
-  bin/
-  obj/
-  .vscode/
+*.o
+*.exe
+*.layout
+*.depend
+*.json
+bin/
+obj/
+.vscode/
