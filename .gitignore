@@ -2,5 +2,7 @@
   *.exe
   *.layout
   *.depend
+  *.json
   bin/
   obj/
+  .vscode/
