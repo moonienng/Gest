@@ -12,6 +12,8 @@
 # ImprimeLista(lista *L) adivinha //(case 6)
 # DuplicaLista(lista *L) duplica a lista L e devolve outra identica //não precisa
 # TODO:  BuscaItem(lista *L, int csol) procura um item e devolve o endereço dele // (case 3 e 4)
+# BuscaItem(lista *L, int csol) procura um item e devolve o endereço dele // (case 3 e 4)
+# Achapos
 */
 typedef struct no
 {
