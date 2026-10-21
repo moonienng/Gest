@@ -25,7 +25,8 @@ void NovaSolic(lista *L,int cods, char *codeq, char *nome,int pri,int per)
     InsereOrdenado(L,novo);
 }
 
-//consultar solicitação (void)
+
+//TODO: consultar solicitação (void)
 /*
     preciso que na biblioteca tenha uma função que a partir do código de solicitação retorne o endereço do item
     *antes da função
@@ -34,7 +35,7 @@ void NovaSolic(lista *L,int cods, char *codeq, char *nome,int pri,int per)
     *função
     3 - printf em todas as informações a partir do endereço
 */
-//editar solicitação (void)
+//TODO: editar solicitação (void)
 /* 
     *antes da função
     1 - pega o código de solicitação
@@ -45,7 +46,7 @@ void NovaSolic(lista *L,int cods, char *codeq, char *nome,int pri,int per)
     4 - buscaitem
     5 - usa o endereço pra acessar o campo que deve ser alterado e altera
 */
-//fila de manutenção (void)
+//TODO: fila de manutenção (void)
 /*
     aqui o filho chora e a mãe não vê
     cara 
@@ -54,8 +55,27 @@ void NovaSolic(lista *L,int cods, char *codeq, char *nome,int pri,int per)
     4 - mostra a lista
     5 - apaga a lista
 */
+//TODO: VerificaTipo (int)
+/*
+    1 - recebe o retorno de um scanf 
+    2 - verifica se o retorno está certo
+    3 - retorna 0 para quando tá certo e 1 para quando está errado
+*/
+//TODO: VerificarEEntrada (int)
+/*
+    1 - recebe o código do equipamento
+    2 - verifica se os 3 primeiros são letras
+    3 - verifica se os 3 ultimos são números
+    4 - retorna 0 para quando tá certo e 1 para quando está errado
+*/
+// TODO: VerificarIntervalo (int)
+/*
+    1 - recebe a prioridade e o prazo
+    2 - confere se o prazo está de acordo com a prioridade
+    3 - retorna 0 caso não haja problema e 1 caso haja
+*/
 
-    int main()
+    int main() 
     {
         setlocale(LC_ALL, "Portuguese");
         int op;
