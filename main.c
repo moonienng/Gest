@@ -22,7 +22,7 @@ void NovaSolic(lista *L,int cods, char *codeq, char *nome,int pri,int per)
     novo->prior = pri;
     //deixa o prox nulo
     novo->prox = NULL;
-    InsereOrdenado(L,novo);
+    InsereLista(L,novo);
 }
 
 
@@ -36,7 +36,7 @@ void NovaSolic(lista *L,int cods, char *codeq, char *nome,int pri,int per)
     3 - printf em todas as informações a partir do endereço
 */
 //TODO: editar solicitação (void)
-/* 
+/*
     *antes da função
     1 - pega o código de solicitação
     2 - pergunta se a alteração é na prioridade ou no prazo
@@ -49,15 +49,15 @@ void NovaSolic(lista *L,int cods, char *codeq, char *nome,int pri,int per)
 //TODO: fila de manutenção (void)
 /*
     aqui o filho chora e a mãe não vê
-    cara 
+    cara
     1 - precisa criar uma lista nova
-    2 - adicionar os itens da lista de solicitações na nova lista a partir da prioridade e prazo 
+    2 - adicionar os itens da lista de solicitações na nova lista a partir da prioridade e prazo
     4 - mostra a lista
     5 - apaga a lista
 */
-//TODO: VerificaTipo (int) 
+//TODO: VerificaTipo (int)
 /*
-    1 - recebe o retorno de um scanf 
+    1 - recebe o retorno de um scanf
     2 - verifica se o retorno está certo
     3 - retorna 0 para quando tá certo e 1 para quando está errado
 */
@@ -83,7 +83,7 @@ int VerificaTipo (int tipo)
     3 - retorna 0 caso não haja problema e 1 caso haja
 */
 
-    int main() 
+    int main()
     {
         setlocale(LC_ALL, "Portuguese");
         int op=0;
@@ -151,7 +151,7 @@ int VerificaTipo (int tipo)
                  printf("\nRelação de prioridades:");
                  printf("\n1  -> Alta: manutenção urgente\n2  -> Média: deve ser feita em breve\n3 -> Baixa: pode aguardar");
                  printf("\nDigite a prioridade do equipamento:");
-                 int res = VerificaTipo(scanf("%d",&pri));
+                 res = VerificaTipo(scanf("%d",&pri));
                  while (res != 0)
                 {
                     printf("Entrada inválida. Tente novamente!");
@@ -163,7 +163,7 @@ int VerificaTipo (int tipo)
                  printf("\nRelação de períodos:");
                  printf("\nPrioridade 1  -> entre 1 e 7 dias\nPrioridade 2  -> entre 1 e 15 dias\nPrioridade 3 -> entre 1 e 20 dias");
                  printf("\nDigite o período de manutenção:");
-                 int res = VerificaTipo(scanf("%d",&per));
+                 res = VerificaTipo(scanf("%d",&per));
                  while (res != 0)
                 {
                     printf("Entrada inválida. Tente novamente!");
@@ -173,7 +173,15 @@ int VerificaTipo (int tipo)
                  NovaSolic(L,cods,codeq,nome,pri,per);
              break;
              case 2:
-                 printf("Apagar solicitação");
+                 int solap;
+                 printf("\t\t==================== Criar nova solicitação ====================");
+                 ImprimeLista(L);
+                 printf("Digite o código do item a ser apagado");
+                 scanf("%d",&solap);
+                 int pos = Achapos(L,solap);
+                 printf("%d",pos);
+                 No *xapiscado = BuscaItem(L,solap);
+                 printf("%d", xapiscado ->csol);
                  //ApagarSolic();
              break;
              case 3:
