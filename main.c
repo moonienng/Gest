@@ -47,7 +47,7 @@ void ConsultarSolic(lista *L, int cod)
     printf("Prazo de manutenção: %d dias",consu->peri);
 
 }
-//TODO: editar solicitação (void)
+//editar solicitação (void)
 /*
     *antes da função
     1 - pega o código de solicitação
@@ -93,12 +93,27 @@ int VerificaTipo (int tipo)
     3 - verifica se os 3 ultimos são números
     4 - retorna 0 para quando tá certo e 1 para quando está errado
 */
-// TODO: VerificarIntervalo (int)
+
+// VerificarIntervalo (int)
 /*
     1 - recebe a prioridade e o prazo
     2 - confere se o prazo está de acordo com a prioridade
     3 - retorna 0 caso não haja problema e 1 caso haja
 */
+int VerificarIntervalo (int pri, int pra)
+{
+    if ((pri>3) || (pri<1) || (pra<0) || (pra>20))
+    {
+        printf("Entradas inválidas. Tente novamente!");
+        return 1;
+    }
+    if(((pri == 1) && (pra > 7)) || ((pri == 2) && (pra > 15)))
+    {
+        printf("O prazo informado é incompatível com a prioridade. Tente novamente!");
+        return 1;
+    }
+    return 0;
+}
 
     int main()
     {
@@ -236,7 +251,7 @@ int VerificaTipo (int tipo)
                  ConsultarSolic(L,cod);
              break;
              case 4:
-                 int pri,pra;
+                 int pra;
                  printf("\t\t==================== Editar solicitação ====================");
                  printf("\nDigite o código de solicitação:");
                  res = VerificaTipo(scanf("%d",&cod));
@@ -247,22 +262,28 @@ int VerificaTipo (int tipo)
                     res = VerificaTipo(scanf("%d",&cod));
                 }
                  ConsultarSolic(L,cod);
-                 printf("\nDigite a nova prioridade: ");
-                 res = VerificaTipo(scanf("%d",&pri));
-                 while (res != 0)
-                {
-                    printf("Entrada inválida. Tente novamente!");
-                    while (getchar() != '\n');
+                 do
+                 {
+                    printf("\nDigite a nova prioridade: ");
                     res = VerificaTipo(scanf("%d",&pri));
-                }
-                 printf("\nDigite o novo prazo: ");
-                 res = VerificaTipo(scanf("%d",&pra));
-                 while (res != 0)
-                {
-                    printf("Entrada inválida. Tente novamente!");
-                    while (getchar() != '\n');
+                    while (res != 0)
+                    {
+                        printf("Entrada inválida. Tente novamente!");
+                        while (getchar() != '\n');
+                        res = VerificaTipo(scanf("%d",&pri));
+                    }
+                    printf("\nDigite o novo prazo: ");
                     res = VerificaTipo(scanf("%d",&pra));
-                }
+                    while (res != 0)
+                    {
+                        printf("Entrada inválida. Tente novamente!");
+                        while (getchar() != '\n');
+                        res = VerificaTipo(scanf("%d",&pra));
+                    }
+                    res = VerificarIntervalo(pri,pra);
+                 }while(res == 1);
+                 
+                 
                  EditarSolic(L,cod,pri,pra);
                  printf("\nSolicitação após alteração:");
                  ConsultarSolic(L,cod);
