@@ -35,6 +35,18 @@ void NovaSolic(lista *L,int cods, char *codeq, char *nome,int pri,int per)
     *função
     3 - printf em todas as informações a partir do endereço
 */
+void ConsultarSolic(lista *L, int cod)
+{
+    No *consu = BuscaItem(L,cod);
+    printf("\nCódigo de solicitação: %d", consu->csol);
+    printf("\nNome do equipamento: ");
+    puts(consu->nome);
+    printf("\nCódigo do equipamento: ");
+    //puts(consu->c_eq);
+    printf("\nPrioridade da solicitação: %d",consu->prior);
+    printf("Prazo de manutenção: %d dias",consu->peri);
+
+}
 //TODO: editar solicitação (void)
 /*
     *antes da função
@@ -210,8 +222,17 @@ int VerificaTipo (int tipo)
                  }
              break;
              case 3:
-                 printf("Consultar solicitação");
-                 //ConsultarSolic);
+                 int cod;
+                 printf("\t\t==================== Consultar solicitação ====================");
+                 printf("\nDigite o código de solicitação:");
+                 res = VerificaTipo(scanf("%d",&cod));
+                 while (res != 0)
+                {
+                    printf("Entrada inválida. Tente novamente!");
+                    while (getchar() != '\n');
+                    res = VerificaTipo(scanf("%d",&cod));
+                }
+                 ConsultarSolic(L,cod);
              break;
              case 4:
                  printf("Editar solicitação");
