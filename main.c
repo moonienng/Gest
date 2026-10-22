@@ -199,11 +199,7 @@ int VerificaTipo (int tipo)
                 }
                  int pos = Achapos(L,solap);
                  No *xapiscado = BuscaItem(L,solap);
-                 printf("\n%d", xapiscado ->csol);
-                 puts(xapiscado->nome);
-                 printf("\n%s", xapiscado->c_eq);
-                 printf("\n%d", xapiscado->prior);
-                 printf("\n%d", xapiscado->peri);
+                 ConsultarSolic(L,xapiscado->csol);
                  printf("\nVocê tem certeza de que deseja deletar este item?[s/n]");
                  res = VerificaTipo(scanf(" %c",&conf));
                  while (res != 0)
