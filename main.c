@@ -26,7 +26,7 @@ void NovaSolic(lista *L,int cods, char *codeq, char *nome,int pri,int per)
 }
 
 
-//TODO: consultar solicitação (void)
+//consultar solicitação (void)
 /*
     preciso que na biblioteca tenha uma função que a partir do código de solicitação retorne o endereço do item
     *antes da função
@@ -51,13 +51,18 @@ void ConsultarSolic(lista *L, int cod)
 /*
     *antes da função
     1 - pega o código de solicitação
-    2 - pergunta se a alteração é na prioridade ou no prazo
-    3 - pega o valor que é pra ser alterado
+    2 - pega o valor que é pra ser alterado
     *Verifica se o valor é possível e compativel
     *função
-    4 - buscaitem
-    5 - usa o endereço pra acessar o campo que deve ser alterado e altera
+    3 - buscaitem
+    4 - usa o endereço pra acessar o campo que deve ser alterado e altera
 */
+void EditarSolic(lista *L, int cod,int pri,int pra)
+{
+    No *item = BuscaItem(L,cod);
+    item ->prior = pri;
+    item ->peri = pra;
+}
 //TODO: fila de manutenção (void)
 /*
     aqui o filho chora e a mãe não vê
@@ -67,7 +72,7 @@ void ConsultarSolic(lista *L, int cod)
     4 - mostra a lista
     5 - apaga a lista
 */
-//TODO: VerificaTipo (int)
+//VerificaTipo (int)
 /*
     1 - recebe o retorno de um scanf
     2 - verifica se o retorno está certo
@@ -231,16 +236,43 @@ int VerificaTipo (int tipo)
                  ConsultarSolic(L,cod);
              break;
              case 4:
-                 printf("Editar solicitação");
-                 //EditarSolic();
+                 int pri,pra;
+                 printf("\t\t==================== Editar solicitação ====================");
+                 printf("\nDigite o código de solicitação:");
+                 res = VerificaTipo(scanf("%d",&cod));
+                 while (res != 0)
+                {
+                    printf("Entrada inválida. Tente novamente!");
+                    while (getchar() != '\n');
+                    res = VerificaTipo(scanf("%d",&cod));
+                }
+                 ConsultarSolic(L,cod);
+                 printf("\nDigite a nova prioridade: ");
+                 res = VerificaTipo(scanf("%d",&pri));
+                 while (res != 0)
+                {
+                    printf("Entrada inválida. Tente novamente!");
+                    while (getchar() != '\n');
+                    res = VerificaTipo(scanf("%d",&pri));
+                }
+                 printf("\nDigite o novo prazo: ");
+                 res = VerificaTipo(scanf("%d",&pra));
+                 while (res != 0)
+                {
+                    printf("Entrada inválida. Tente novamente!");
+                    while (getchar() != '\n');
+                    res = VerificaTipo(scanf("%d",&pra));
+                }
+                 EditarSolic(L,cod,pri,pra);
+                 printf("\nSolicitação após alteração:");
+                 ConsultarSolic(L,cod);
              break;
              case 5:
                  printf("Exibir lista solicitação");
-                 ImprimeLista(L);
              break;
              case 6:
                  printf("Exibir todas solicitação");
-                 //ExibirSolic();
+                 ImprimeLista(L);
              break;
              case 7:
                     printf("Tem certeza que gostaria de sair?[s/n]");
