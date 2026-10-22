@@ -174,15 +174,40 @@ int VerificaTipo (int tipo)
              break;
              case 2:
                  int solap;
-                 printf("\t\t==================== Criar nova solicitação ====================");
+                 char conf;
+                 printf("\t\t==================== Apagar solicitação ====================");
                  ImprimeLista(L);
-                 printf("Digite o código do item a ser apagado");
-                 scanf("%d",&solap);
+                 printf("\n\nDigite o código do item a ser apagado");
+                 res = VerificaTipo(scanf("%d",&solap));
+                 while (res != 0)
+                {
+                    printf("Entrada inválida. Tente novamente!");
+                    while (getchar() != '\n');
+                    res = VerificaTipo(scanf("%d",&solap));
+                }
                  int pos = Achapos(L,solap);
-                 printf("%d",pos);
                  No *xapiscado = BuscaItem(L,solap);
-                 printf("%d", xapiscado ->csol);
-                 //ApagarSolic();
+                 printf("\n%d", xapiscado ->csol);
+                 puts(xapiscado->nome);
+                 printf("\n%s", xapiscado->c_eq);
+                 printf("\n%d", xapiscado->prior);
+                 printf("\n%d", xapiscado->peri);
+                 printf("\nVocê tem certeza de que deseja deletar este item?[s/n]");
+                 res = VerificaTipo(scanf(" %c",&conf));
+                 while (res != 0)
+                {
+                    printf("Entrada inválida. Tente novamente!");
+                    while (getchar() != '\n');
+                    res = VerificaTipo(scanf(" %c",&conf));
+                }
+                 if(tolower(conf) == 's')
+                 {
+                    XapiskaItem(L,pos);
+                 }
+                 else
+                 {
+                    printf("\nOperação cancelada");
+                 }
              break;
              case 3:
                  printf("Consultar solicitação");
