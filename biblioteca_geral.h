@@ -18,7 +18,7 @@
 typedef struct no
 {
     int csol; //código da solicitação
-    char c_eq[6]; //código do equipamento
+    char c_eq[7]; //código do equipamento
     char nome[20]; //nome do equipamento
     int prior; //prioridade do equipamento
     int peri; //período até ficar pronto
@@ -111,7 +111,7 @@ void ImprimeLista(lista *L){
     int index=1;
     while(aux->prox!=NULL){
             printf("\n\n");
-        printf("\ncódigo de solicitaçao numero %d:%d",index,aux->csol);
+        printf("\ncódigo de solicitaçao numero %d:%04d",index,aux->csol);
         printf("\ncódigo de equipamento numero %d:%s",index,aux->c_eq);
         printf("\nnome do equipamento %d:%s",index,aux->nome);
         printf("\nprioridade do equipamento %d:%d",index,aux->prior);
