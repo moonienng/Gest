@@ -70,6 +70,11 @@ void EditarSolic(lista *L, int cod, int pri, int pra)
     4 - mostra a lista
     5 - apaga a lista
 */
+void ListaManutencao(lista *L)
+{
+    
+}
+
 // VerificaTipo (int)
 /*
     1 - recebe o retorno de um scanf
@@ -184,19 +189,21 @@ int main()
 
             printf("\t\t==================== Criar nova solicitação ====================");
             // pedir codigo de solicitação
+            int res;
             do
             {
                 printf("\nDigite o código de solicitação:");
-                int res = VerificaTipo(scanf("%d", &cods));
+                res = VerificaTipo(scanf("%d", &cods));
                 while (res != 0)
                 {
                     printf("Entrada inválida. Tente novamente!");
-                    while (getchar() != '\n')
-                        ;
+                    while (getchar() != '\n');
+                        
                     res = VerificaTipo(scanf("%d", &cods));
                 }
                 res = VerificarCSol(L, cods);
-            } while (res != 0);
+            } while (res == 1);
+
             // pedir pedir código do equipamento
             printf("\nDigite o código do equipamento:");
             fgets(codeq, sizeof(codeq), stdin);
@@ -322,7 +329,8 @@ int main()
             ConsultarSolic(L, cod);
             break;
         case 5:
-            printf("Exibir lista solicitação");
+            printf("\nExibir lista de manutenção");
+            ListaManutencao(L);
             break;
         case 6:
             printf("Exibir todas solicitação");
