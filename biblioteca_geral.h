@@ -177,7 +177,6 @@ lista* RachaLista (lista *L, int index){
 int Achapos (lista *L, int csol){
     int cond=VaziaLista(L);
     if (cond==1){
-        free(L);
         return 0;
     }
     No *aux=L->inicio;
