@@ -206,12 +206,12 @@ int main()
             system("pause");
             break;
         case 5:
-            printf("\t\t====================Exibir lista de manutenção====================");
+            printf("\t\t==================== Lista de manutenção ====================");
             ListaManutencao(L);
             system("pause");
             break;
         case 6:
-            printf("\t\t====================Exibir todas solicitação====================");
+            printf("\t\t==================== Lista de solicitações ====================");
             ImprimeLista(L);
             system("pause");
             break;
