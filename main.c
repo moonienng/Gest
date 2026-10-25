@@ -71,28 +71,33 @@ int main()
             printf("\nDigite o nome do equipamento:");
             fgets(nome, sizeof(nome), stdin);
 
-            printf("\nRelação de prioridades:");
-            printf("\n1  -> Alta: manutenção urgente\n2  -> Média: deve ser feita em breve\n3 -> Baixa: pode aguardar");
-            printf("\nDigite a prioridade do equipamento:");
-            res = VerificaTipo(scanf("%d", &pri));
-            while (res != 0)
+            do
             {
-                printf("Entrada inválida. Tente novamente!");
-                while (getchar() != '\n');
+                printf("\nRelação de prioridades:");
+                printf("\n1  -> Alta: manutenção urgente\n2  -> Média: deve ser feita em breve\n3 -> Baixa: pode aguardar");
+                printf("\nDigite a prioridade do equipamento:");
                 res = VerificaTipo(scanf("%d", &pri));
-            }
-
-            printf("\nRelação de períodos:");
-            printf("\nPrioridade 1  -> entre 1 e 7 dias\nPrioridade 2  -> entre 1 e 15 dias\nPrioridade 3 -> entre 1 e 20 dias");
-            printf("\nDigite o período de manutenção:");
-            res = VerificaTipo(scanf("%d", &per));
-            while (res != 0)
-            {
-                printf("Entrada inválida. Tente novamente!");
-                while (getchar() != '\n')
-                    ;
+                while (res != 0)
+                {
+                    printf("Entrada inválida. Tente novamente!");
+                    while (getchar() != '\n');
+                    res = VerificaTipo(scanf("%d", &pri));
+                }
+                printf("\nRelação de períodos:");
+                printf("\nPrioridade 1  -> entre 1 e 7 dias\nPrioridade 2  -> entre 1 e 15 dias\nPrioridade 3 -> entre 1 e 20 dias");
+                printf("\nDigite o período de manutenção:");
                 res = VerificaTipo(scanf("%d", &per));
-            }
+                while (res != 0)
+                {
+                    printf("Entrada inválida. Tente novamente!");
+                    while (getchar() != '\n')
+                        ;
+                    res = VerificaTipo(scanf("%d", &per));
+                }
+                res = VerificarIntervalo(pri, per);
+            } while (res == 1);
+
+            
             NovaSolic(L, cods, codeq, nome, pri, per);
             system("pause");
             break;
