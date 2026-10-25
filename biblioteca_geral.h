@@ -3,39 +3,30 @@
 #define BLISTECA_H_INCLUDED
 #include <stdio.h>
 #include <stdlib.h>
-/*
-# VaziaLista (lista* L) recebe uma lista e devolve  1 caso esteja vazia
-# CriaLista() cria uma lista e devolve o endereço (inicio e case 5)
-# InsereLista (lista *L,int pos,int n) insere um valor n na posiçao pos na lista L (case 1)
-# TODO: XapiskaItem (lista *L,int pos) (case 2)deleta o item na posiçao pos da lista L //precisa ou ser por código de solicitação ou a gente cria uma função que procure a posição a partir do código de solicitação
-# XapiskaLista (lista *L) deleta a lista L // (case 7)no sair vai precisar; acabei de me tocar que tamo deixando lista aleatória na memória do computador sem poder acessar depois
-# ImprimeLista(lista *L) adivinha //(case 6)
-# DuplicaLista(lista *L) duplica a lista L e devolve outra identica //não precisa
-
-# TODO: Achapos (lista *L, int csol) procura um item pelo código de solicitação e devolve a posição dele
-# TODO: BuscaItem(lista *L, int csol) procura um item e devolve o endereço dele // (case 3 e 4)
-*/
 typedef struct no
 {
-    int csol; //código da solicitação
-    char c_eq[7]; //código do equipamento
-    char nome[20]; //nome do equipamento
-    int prior; //prioridade do equipamento
-    int peri; //período até ficar pronto
+    int csol;
+    char c_eq[7];
+    char nome[20];
+    int prior;
+    int peri;
     struct no *prox;
 }No;
 
-typedef struct lista{
+typedef struct lista
+{
     No *inicio;
 } lista;
 
-int VaziaLista (lista* L){
+int VaziaLista (lista* L)
+{
     if (L->inicio==NULL) return 1;
     return 0;
 
 }
 
-lista* CriaLista(){
+lista* CriaLista()
+{
     lista *L = (lista*) malloc(sizeof(lista));
     L->inicio=NULL;
     return L;
@@ -105,6 +96,7 @@ lista* XapiskaLista (lista *L){
 void ImprimeLista(lista *L){
      int cond=VaziaLista(L);
     if (cond==1){
+        printf("\nLista vazia.");
         return;
     }
     No *aux=L->inicio;
@@ -128,51 +120,6 @@ void ImprimeLista(lista *L){
         aux=aux->prox;
     return;
 }
-
-/*lista* DuplicaLista(lista *L){
-    int cond=VaziaLista(L);
-    if (cond==1){
-        return NULL;
-    }
-    lista *D=CriaLista();
-    No *aux=L->inicio;
-    D->inicio=(No*)malloc(sizeof(No));
-    No *aux2=D->inicio;
-    while (aux->prox!=NULL){
-        aux2->info=aux->info;
-        aux=aux->prox;
-        aux2->prox=(No*)malloc(sizeof(No));
-        aux2=aux2->prox;
-    }
-    aux2->prox=NULL;
-    aux2->info=aux->info;
-
-    return D;
-}
-
-lista* RachaLista (lista *L, int index){
-    int cond=VaziaLista(L);
-    if (cond==1){
-        return NULL;
-    }
-    lista *D=CriaLista();
-    No *aux=L->inicio;
-    index=index-2;
-
-    if (index == 0){
-    D->inicio=L->inicio;
-    free(L);
-    return D;
-    }
-
-    while((aux->prox!=NULL)&&(index>0)){
-        aux=aux->prox;
-        index--;
-    }
-    D->inicio=aux->prox;
-    aux->prox=NULL;
-    return D;
-}*/
 
 int Achapos (lista *L, int csol){
     int cond=VaziaLista(L);
@@ -199,4 +146,4 @@ No* BuscaItem(lista *L, int csol){
     }
     return aux;
 }
-#endif // BLISTECA_H_INCLUDED
+#endif
