@@ -48,9 +48,7 @@ int main()
                 while (res != 0)
                 {
                     printf("Entrada inválida. Tente novamente!");
-
-
-
+                    while (getchar() != '\n');
                     res = VerificaTipo(scanf("%d", &cods));
                 }
 
@@ -61,14 +59,12 @@ int main()
             do
             {
             fgets(codeq, sizeof(codeq), stdin);
-            
-            res = VerificaEquipamento(codeq);
             while (getchar() != '\n');
+            res = VerificaEquipamento(codeq); 
             if (res != 0)
                 {
                     printf("Entrada inválida. Tente novamente!");
                 }
-
 
             } while (res == 1);
 
@@ -82,8 +78,7 @@ int main()
             while (res != 0)
             {
                 printf("Entrada inválida. Tente novamente!");
-                while (getchar() != '\n')
-                    ;
+                while (getchar() != '\n');
                 res = VerificaTipo(scanf("%d", &pri));
             }
 
@@ -105,26 +100,33 @@ int main()
             int solap;
             char conf;
             printf("\t\t==================== Apagar solicitação ====================");
+            int v = VaziaLista(L);
+            if(v == 1)
+            {
+                printf("Não há itens a serem apagados");
+            }
+            else
+            {
             ImprimeLista(L);
             No *xapiscado = NULL;
             int pos;
             do
             {
-            printf("\n\nDigite o código do item a ser apagado");
-            res = VerificaTipo(scanf("%d", &solap));
-            while (res != 0)
-            {
-                printf("Entrada inválida. Tente novamente!");
-                while (getchar() != '\n')
-                    ;
+                printf("\n\nDigite o código do item a ser apagado");
                 res = VerificaTipo(scanf("%d", &solap));
-            }
-            pos = Achapos(L, solap);
-            xapiscado = BuscaItem(L, solap);
-            if(xapiscado == NULL)
-            {
-                printf("Esse elemento não existe. Tente novamente!");
-            }
+                while (res != 0)
+                {
+                    printf("Entrada inválida. Tente novamente!");
+                    while (getchar() != '\n')
+                        ;
+                    res = VerificaTipo(scanf("%d", &solap));
+                }
+                pos = Achapos(L, solap);
+                xapiscado = BuscaItem(L, solap);
+                if(xapiscado == NULL)
+                {
+                    printf("Solicitação não encontrada.");
+                }
             }while(xapiscado == NULL);
             ConsultarSolic(L, xapiscado->csol);
             printf("\nVocê tem certeza de que deseja deletar este item?[s/n]");
@@ -143,6 +145,7 @@ int main()
             else
             {
                 printf("\nOperação cancelada");
+            }
             }
             system("pause");
             break;
