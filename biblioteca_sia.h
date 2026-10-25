@@ -148,7 +148,7 @@ int VerificarCSol(lista *L, int csol)
 }
 int VerificarIntervalo(int pri, int pra)
 {
-    if ((pri > 3) || (pri < 1) || (pra < 0) || (pra > 20))
+    if ((pri > 3) || (pri < 1) || (pra <= 0) || (pra > 20))
     {
         printf("Entradas inválidas. Tente novamente!");
         return 1;
