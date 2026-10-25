@@ -17,6 +17,11 @@ void NovaSolic(lista *L, int cods, char *codeq, char *nome, int pri, int per)
 void ConsultarSolic(lista *L, int cod)
 {
     No *consu = BuscaItem(L, cod);
+    if(consu == NULL)
+    {
+        printf("Solicitação não encontrada.");
+        return;
+    }
     printf("\nCódigo de solicitação: %04d", consu->csol);
     printf("\nNome do equipamento: ");
     puts(consu->nome);
@@ -28,6 +33,11 @@ void ConsultarSolic(lista *L, int cod)
 void EditarSolic(lista *L, int cod, int pri, int pra)
 {
     No *item = BuscaItem(L, cod);
+    if(item == NULL)
+    {
+        printf("Solicitação não encontrada.");
+        return;
+    }
     item->prior = pri;
     item->peri = pra;
 }
