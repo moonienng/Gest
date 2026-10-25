@@ -28,7 +28,7 @@ void ConsultarSolic(lista *L, int cod)
     printf("\nCódigo do equipamento: ");
     puts(consu->c_eq);
     printf("\nPrioridade da solicitação: %d", consu->prior);
-    printf("Prazo de manutenção: %d dias", consu->peri);
+    printf("Prazo de manutenção: %d dias\n", consu->peri);
 }
 void EditarSolic(lista *L, int cod, int pri, int pra)
 {

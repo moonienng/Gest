@@ -108,7 +108,7 @@ void ImprimeLista(lista *L){
         printf("\nCódigo de equipamento numero:%s",aux->c_eq);
         printf("\nNome do equipamento:%s",aux->nome);
         printf("\nPrioridade da solicitação:%d",aux->prior);
-        printf("\nPrazo de manutenção:%d",aux->peri);
+        printf("\nPrazo de manutenção:%d\n",aux->peri);
         aux=aux->prox;
         index++;
     }
