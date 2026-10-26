@@ -1,5 +1,5 @@
-#ifndef BLISTECA_SIA_INCLUDED
-#define BLISTECA_SIA_INCLUDED
+#ifndef BIBLIOTECA_SIA_INCLUDED
+#define BIBLIOTECA_SIA_INCLUDED
 #include <stdio.h>
 #include <stdlib.h>
 void NovaSolic(lista *L, int cods, char *codeq, char *nome, int pri, int per)
