@@ -1,6 +1,6 @@
-#ifndef BLISTECA_H_INCLUDED
+#ifndef BIBLIOTECA_GERAL_H_INCLUDED
 
-#define BLISTECA_H_INCLUDED
+#define BIBLIOTECA_GERAL_H_INCLUDED
 #include <stdio.h>
 #include <stdlib.h>
 typedef struct no
